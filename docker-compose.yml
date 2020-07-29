@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  janus:
+    build: .
+    ports:
+      - 8088:8088
+      - 8188:8188
