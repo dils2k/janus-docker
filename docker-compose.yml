@@ -6,6 +6,8 @@ services:
     ports:
       - 8088:8088
       - 8188:8188
+    volumes:
+      - ./conf/:/opt/janus/etc/janus/
 
   demo:
     build: demo
