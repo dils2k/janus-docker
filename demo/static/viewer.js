@@ -8,7 +8,7 @@ const janusURL = "http://localhost:8088/janus"
 let sessionID;
 let handleID;
 
-let socket = new WebSocket("wss://test.sudya.uz/janus", "janus-protocol");
+let socket = new WebSocket("ws://localhost:3001/janus", "janus-protocol");
 socket.onopen = () => {
   console.log("Socket successfully connected!");
 }
