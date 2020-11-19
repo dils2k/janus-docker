@@ -36,8 +36,9 @@ WORKDIR /
 
 RUN apt-get install -y cmake
 
-RUN git clone https://libwebsockets.org/repo/libwebsockets.git
+RUN git clone https://github.com/warmcat/libwebsockets.git
 WORKDIR libwebsockets
+RUN git checkout tags/v4.1.4
 RUN mkdir build
 WORKDIR build
 RUN cmake -DLWS_MAX_SMP=1 -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_C_FLAGS="-fpic" ..
@@ -46,6 +47,7 @@ WORKDIR /
 
 RUN git clone https://github.com/meetecho/janus-gateway.git
 WORKDIR janus-gateway
+RUN git checkout tags/v0.10.7
 RUN sh autogen.sh
 RUN ./configure --prefix=/opt/janus --disable-data-channels --disable-rabbitmq --disable-mqtt
 RUN make
