@@ -168,10 +168,10 @@ function joinBroadcast(jsep) {
 //    }
 
 function onicecandidate(evt) {
-  console.log("*** some ice on me ***");
-  console.log(evt);
-
   if (evt.candidate) {
+    console.log("*** some ice on me ***");
+    console.log(evt);
+
     msg = {
       janus: "trickle",
       transaction: "candidate",
