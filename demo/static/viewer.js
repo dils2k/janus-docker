@@ -5,6 +5,14 @@ const startStreamingButton = document.querySelector("button#startStreaming");
 
 const janusURL = "http://localhost:8088/janus"
 
+const CONFIG = {
+  audio: false,
+  video: true,
+  iceServers: [
+    {urls: 'stun:stun.l.google.com:19302'},
+  ]
+}
+
 let sessionID;
 let handleID;
 
@@ -107,7 +115,7 @@ function joinRoomAsSubscriber() {
   console.log(` - Handle ID:  ${handleID}`);
   console.log("-------------------------------");
 
-  peerConnection = new RTCPeerConnection();
+  peerConnection = new RTCPeerConnection(CONFIG);
   peerConnection.onicecandidate = onicecandidate;
   peerConnection.ontrack = evt => {
     player.srcObject = evt.streams[0];

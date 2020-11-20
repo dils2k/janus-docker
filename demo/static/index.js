@@ -6,6 +6,14 @@ const feedDisplay = document.querySelector("#feed");
 
 const janusURL = "http://139.59.129.170:8088/janus"
 
+const CONFIG = {
+  audio: false,
+  video: true,
+  iceServers: [
+    {urls: 'stun:stun.l.google.com:19302'},
+  ]
+}
+
 let sessionID;
 let handleID;
 let roomID;
@@ -115,7 +123,7 @@ function joinRoom() {
 
 async function startBroadcast(payload) {
   console.log("**** Starting a broadcast ****");
-  peerConnection = new RTCPeerConnection();
+  peerConnection = new RTCPeerConnection(CONFIG);
   peerConnection.onicecandidate = onicecandidate;
   peerConnection.ontrack = ontrack;
 
