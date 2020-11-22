@@ -11,9 +11,7 @@ const CONFIG = {
   video: true,
   iceServers: [
     {
-      url: 'turn:167.172.170.110:3478',
-      credential: 'test',
-      username: 'test123'
+      "urls": "stun:stun.l.google.com:19302",
     },
   ]
 }
@@ -23,7 +21,7 @@ let handleID;
 let roomID;
 let feedID;
 
-let socket = new WebSocket("ws://localhost:3001/janus", "janus-protocol");
+let socket = new WebSocket("wss://test.sudya.uz/janus/janus", "janus-protocol");
 socket.onopen = () => {
   console.log("Socket successfully connected!");
 }

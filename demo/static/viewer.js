@@ -10,17 +10,15 @@ const CONFIG = {
   video: true,
   iceServers: [
     {
-      url: 'turn:167.172.170.110:3478',
-      credential: 'test',
-      username: 'test123'
-    },
+      "urls": "stun:stun.l.google.com:19302",
+    }
   ]
 }
 
 let sessionID;
 let handleID;
 
-let socket = new WebSocket("ws://localhost:3001/janus", "janus-protocol");
+let socket = new WebSocket("wss://test.sudya.uz/janus/janus", "janus-protocol");
 socket.onopen = () => {
   console.log("Socket successfully connected!");
 }
@@ -61,7 +59,7 @@ socket.onmessage = evt => {
       joinBroadcast(msg.jsep);
       break;
      case joinRoomTransaction:
-       break;
+      break;
   }
 };
 
