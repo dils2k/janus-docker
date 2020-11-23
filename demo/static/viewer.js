@@ -9,10 +9,10 @@ const CONFIG = {
   audio: false,
   video: true,
   iceServers: [
-    {
-      "urls": "stun:stun.l.google.com:19302",
-    }
-  ]
+    // {urls: "stun:stun.l.google.com:19302"},
+    {urls: "stun:numb.viagenie.ca:3478", username: "dils.matchanov@gmail.com", credential: "2920064d."},
+    {urls: "turn:numb.viagenie.ca:3478", username: "dils.matchanov@gmail.com", credential: "2920064d."},
+  ],
 }
 
 let sessionID;
