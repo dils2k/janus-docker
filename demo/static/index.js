@@ -11,8 +11,10 @@ const CONFIG = {
   video: true,
   iceServers: [
     // {urls: "stun:stun.l.google.com:19302"},
-    {urls: "stun:numb.viagenie.ca:3478", username: "dils.matchanov@gmail.com", credential: "2920064d."},
-    {urls: "turn:numb.viagenie.ca:3478", username: "dils.matchanov@gmail.com", credential: "2920064d."},
+    // {urls: "stun:numb.viagenie.ca:3478", username: "dils.matchanov@gmail.com", credential: "2920064d."},
+    // {urls: "turn:numb.viagenie.ca:3478", username: "dils.matchanov@gmail.com", credential: "2920064d."},
+    {urls: "stun:conf.sudya.uz:3478", username: "test", credential: "test123"},
+    {urls: "turn:conf.sudya.uz:3478", username: "test", credential: "test123"},
   ],
 }
 
@@ -137,6 +139,9 @@ async function startBroadcast(payload) {
 
   const offer = await peerConnection.createOffer()
   peerConnection.setLocalDescription(offer);
+  peerConnection.oniceconnectionstatechange = evt => {
+    console.log("ICE connection state change: ", evt);
+  }
 
   msg = JSON.stringify({
     janus: 'message',
@@ -173,6 +178,19 @@ function onicecandidate(evt) {
       janus: "trickle",
       transaction: "candidate",
       candidate: evt.candidate,
+      session_id: sessionID,
+      handle_id: handleID
+    }
+
+    msg = JSON.stringify(msg);
+    socket.send(msg);
+  } else {
+    msg = {
+      janus: "trickle",
+      transaction: "nomorecandidates",
+      candidate: {
+        completed: true
+      },
       session_id: sessionID,
       handle_id: handleID
     }
